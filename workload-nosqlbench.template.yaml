@@ -1,0 +1,420 @@
+#../nb run driver=cqld3 workload=all-workload.yaml tags=phase:rampup threads=auto cycles=3000000 cyclerate=15000 async=64  --progress console:10s loadbalancing='LAP(s=10),TAP()'  pooling=8:16:10000,8:16:10000
+description: |
+  This workload emulates a Web Sales from Retail
+bindings:
+  wr_order_number: Uniform(0,9999999999)
+  wr_item_sk:  Uniform(0,<<max_item_sk>>) 
+  wr_web_page_sk:  <<max_web_page_sk>>
+  wr_returned_date_sk: Uniform(<<start_date>>,<<end_date>>)
+  wr_returned_time_sk: Uniform(0,86399) 
+  wr_returning_addr_sk: Uniform(0,<<max_c_address_sk>>) 
+  wr_returning_cdemo_sk: Uniform(0,<<max_cdemo_sk>>) 
+  wr_returning_customer_sk: Uniform(<<max_customer_sk>>)) 
+  wr_refunded_cdemo_sk: Uniform(0,<<max_cdemo_sk>>) 
+  wr_refunded_customer_sk: Uniform(<<max_customer_sk>>)) 
+  wr_refunded_hdemo_sk: Uniform(0,7200) 
+  wr_account_credit: Normal(0.0,9999.0)
+  wr_returning_hdemo_sk: Uniform(0,7200) 
+  wr_refunded_addr_sk: Uniform(0,<<max_c_address_sk>>) 
+  wr_reason_sk: Uniform(0,<<max_reason_sk>>) 
+  wr_fee: Normal(0.0,9999.0)
+  wr_net_loss: Normal(0.0,9999.0)
+  wr_refunded_cash:  Normal(0.0,9999.0)
+  wr_return_amt:  Normal(0.0,9999.0)
+  wr_return_amt_inc_tax:  Normal(0.0,9999.0)
+  wr_return_quantity: Uniform(0,2000000) -> int
+  wr_return_ship_cost:  Normal(0.0,9999.0)
+  wr_return_tax:  Normal(0.0,9999.0)
+  wr_reversed_charge:  Normal(0.0,9999.0)
+  ws_item_sk:  Uniform(0,<<max_item_sk>>) 
+  ws_order_number: Uniform(0,9999999999)
+  ws_sold_date_sk: Uniform(<<start_date>>,<<end_date>>)  
+  ws_sold_time_sk: Uniform(0,86399) 
+  ws_warehouse_sk: Uniform(0,<<max_warehouse>>) 
+  ws_ship_date_sk: Uniform(<<start_date>>,<<end_date>>)  
+  ws_bill_customer_sk: Uniform(<<max_customer_sk>>)) 
+  ws_bill_cdemo_sk: Uniform(0,<<max_cdemo_sk>>) 
+  ws_bill_hdemo_sk: Uniform(0,7200) 
+  ws_bill_addr_sk: Uniform(0,<<max_c_address_sk>>) 
+  ws_ship_customer_sk: Uniform(<<max_customer_sk>>)) 
+  ws_ship_cdemo_sk: Uniform(0,<<max_cdemo_sk>>) 
+  ws_ship_hdemo_sk: Uniform(0,7200) 
+  ws_ship_addr_sk: Uniform(0,<<max_c_address_sk>>) 
+  ws_web_page_sk: <<max_web_page_sk>>
+  ws_promo_sk: Uniform(0,<<max_promo_sk>>) 
+  ws_web_site_sk: Uniform(0,<<max_web_site_sk>>) 
+  ws_ship_mode_sk: Uniform(0,20)
+  ws_quantity:  Uniform(0,2000000) -> int
+  ws_wholesale_cost: Normal(0.0,9999.0)
+  ws_list_price:  Normal(0.0,9999.0)
+  ws_sales_price:  Normal(0.0,9999.0)
+  ws_ext_discount_amt:  Normal(0.0,9999.0)
+  ws_ext_sales_price:  Normal(0.0,9999.0)
+  ws_ext_wholesale_cost:  Normal(0.0,9999.0)
+  ws_ext_list_price:  Normal(0.0,9999.0)
+  ws_ext_tax:  Normal(0.0,9999.0)
+  ws_coupon_amt:  Normal(0.0,9999.0)
+  ws_ext_ship_cost:  Normal(0.0,9999.0)
+  ws_net_paid:  Normal(0.0,9999.0)
+  ws_net_paid_inc_tax:  Normal(0.0,9999.0)
+  ws_net_paid_inc_ship:  Normal(0.0,9999.0)
+  ws_net_paid_inc_ship_tax:  Normal(0.0,9999.0)
+  ws_net_profit:  Normal(0.0,9999.0)
+  sr_item_sk:  Uniform(0,<<max_item_sk>>) 
+  sr_store_sk:  Uniform(0,<<max_store_sk>>)) 
+  sr_return_time_sk: Uniform(0,86399) 
+  sr_returned_date_sk: Uniform(<<start_date>>,<<end_date>>)
+  sr_cdemo_sk: Uniform(0,<<max_cdemo_sk>>) 
+  sr_customer_sk: Uniform(<<max_customer_sk>>)) 
+  sr_addr_sk: Uniform(0,<<max_c_address_sk>>) 
+  sr_hdemo_sk: Uniform(0,7200) 
+  sr_reason_sk: Uniform(0,<<max_reason_sk>>) 
+  sr_ticket_number: Uniform(0,9999999999)
+  sr_fee: Normal(0.0,9999.0)
+  sr_net_loss: Normal(0.0,9999.0)
+  sr_refunded_cash: Normal(0.0,9999.0) 
+  sr_return_amt: Normal(0.0,9999.0)
+  sr_return_amt_inc_tax: Normal(0.0,9999.0)
+  sr_return_quantity: Uniform(0,2000000) -> int
+  sr_return_ship_cost: Normal(0.0,9999.0)
+  sr_return_tax: Normal(0.0,9999.0)
+  sr_reversed_charge: Normal(0.0,9999.0)
+  sr_store_credit: Normal(0.0,9999.0)
+  ss_item_sk:  Uniform(0,<<max_item_sk>>) 
+  ss_ticket_number: Uniform(0,9999999999)
+  ss_addr_sk: Uniform(0,<<max_c_address_sk>>) 
+  ss_cdemo_sk: Uniform(0,<<max_cdemo_sk>>) 
+  ss_store_sk:  Uniform(0,<<max_store_sk>>)) 
+  ss_hdemo_sk: Uniform(0,7200) 
+  ss_customer_sk: Uniform(<<max_customer_sk>>)) 
+  ss_promo_sk: Uniform(0,<<max_promo_sk>>) 
+  ss_sold_date_sk: Uniform(<<start_date>>,<<end_date>>)
+  ss_sold_time_sk: Uniform(0,86399) 
+  ss_coupon_amt: Normal(0.0,9999.0)
+  ss_ext_discount_amt: Normal(0.0,9999.0)
+  ss_ext_list_price: Normal(0.0,9999.0)
+  ss_ext_sales_price: Normal(0.0,9999.0)
+  ss_ext_tax: Normal(0.0,9999.0)
+  ss_ext_wholesale_cost: Normal(0.0,9999.0)
+  ss_list_price: Normal(0.0,9999.0)
+  ss_net_paid: Normal(0.0,9999.0)
+  ss_net_paid_inc_tax: Normal(0.0,9999.0)
+  ss_net_profit: Normal(0.0,9999.0)
+  ss_quantity: Uniform(0,2000000) -> int
+  ss_sales_price: Normal(0.0,9999.0)
+  ss_wholesale_cost: Normal(0.0,9999.0)  
+  cs_item_sk:  Uniform(0,<<max_item_sk>>) 
+  cs_order_number: Uniform(0,9999999999)
+  cs_ship_addr_sk: Uniform(0,<<max_c_address_sk>>) 
+  cs_ship_cdemo_sk: Uniform(0,<<max_cdemo_sk>>) 
+  cs_ship_customer_sk:  Uniform(0,<<max_cdemo_sk>>) 
+  cs_ship_date_sk: Uniform(<<start_date>>,<<end_date>>)
+  cs_ship_hdemo_sk: Uniform(0,7200) 
+  cs_ship_mode_sk:  Uniform(0,20)
+  cs_sold_date_sk:  Uniform(<<start_date>>,<<end_date>>)
+  cs_sold_time_sk: Uniform(0,86399) 
+  cs_warehouse_sk:  Uniform(0,<<max_warehouse_sk>>))
+  cs_bill_addr_sk: Uniform(0,<<max_c_address_sk>>) 
+  cs_bill_cdemo_sk: Uniform(0,<<max_cdemo_sk>>) 
+  cs_bill_customer_sk:  Uniform(0,<<max_cdemo_sk>>) 
+  cs_bill_hdemo_sk:  Uniform(0,7200) 
+  cs_call_center_sk: Uniform(0,<<max_call_center_sk>>) 
+  cs_catalog_page_sk: Uniform(0,<<max_catalog_page_sk>>)
+  cs_promo_sk: Uniform(0,<<max_promo_sk>>) 
+  cs_quantity: Uniform(0,2000000) -> int
+  cs_coupon_amt:  Normal(0.0,9999.0)
+  cs_ext_discount_amt: Normal(0.0,9999.0)
+  cs_ext_list_price: Normal(0.0,9999.0)
+  cs_ext_sales_price: Normal(0.0,9999.0)
+  cs_ext_ship_cost: Normal(0.0,9999.0)
+  cs_ext_tax: Normal(0.0,9999.0)
+  cs_ext_wholesale_cost: Normal(0.0,9999.0)
+  cs_list_price: Normal(0.0,9999.0)
+  cs_net_paid: Normal(0.0,9999.0)
+  cs_net_paid_inc_ship: Normal(0.0,9999.0)
+  cs_net_paid_inc_ship_tax: Normal(0.0,9999.0)
+  cs_net_paid_inc_tax: Normal(0.0,9999.0)
+  cs_net_profit: Normal(0.0,9999.0)
+  cs_wholesale_cost: Normal(0.0,9999.0)
+  cs_sales_price: Normal(0.0,9999.0)
+blocks:
+  - tags:
+      phase: schema
+    params:
+      prepared: false
+    statements:
+     - create-keyspace: |
+        create keyspace if not exists benchmark
+        WITH replication = {'class': 'SimpleStrategy', 'replication_factor': '1'}
+        AND durable_writes = true;
+     - drop-table-store-sales: |
+         drop table if exists benchmark.store_sales; 
+     - drop-table-store-returns: |
+         drop table if exists benchmark.store_returns;  
+     - drop-table-web-sales: |          
+         drop table if exists benchmark.web_sales;   
+     - drop-table-web-returns: |
+         drop table if exists benchmark.web_returns;     
+     - drop-table-catalog_sales: |
+         drop table if exists benchmark.catalog_sales;          
+     - create-table-web_sales : |
+         create table benchmark.web_sales 
+            ( ws_item_sk bigint,
+              ws_sold_date_sk bigint, 
+              ws_order_number bigint,
+              ws_sold_time_sk bigint,
+              ws_warehouse_sk bigint,
+              ws_ship_date_sk bigint,
+              ws_bill_customer_sk bigint,
+              ws_bill_cdemo_sk bigint,
+              ws_bill_hdemo_sk bigint,
+              ws_bill_addr_sk bigint,
+              ws_ship_customer_sk bigint,
+              ws_ship_cdemo_sk bigint,
+              ws_ship_hdemo_sk bigint,
+              ws_ship_addr_sk bigint,
+              ws_web_page_sk bigint,
+              ws_promo_sk bigint,
+              ws_web_site_sk bigint,
+              ws_ship_mode_sk bigint,
+              ws_quantity int,
+              ws_wholesale_cost double,
+              ws_list_price double,
+              ws_sales_price double,
+              ws_ext_discount_amt double,
+              ws_ext_sales_price double,
+              ws_ext_wholesale_cost double,
+              ws_ext_list_price double,
+              ws_ext_tax double,
+              ws_coupon_amt double,
+              ws_ext_ship_cost double,
+              ws_net_paid double,
+              ws_net_paid_inc_tax double,
+              ws_net_paid_inc_ship double,
+              ws_net_paid_inc_ship_tax double,
+              ws_net_profit double,
+              junk text,
+            PRIMARY KEY ((ws_item_sk,ws_order_number,ws_sold_date_sk,ws_sold_time_sk))
+          )  WITH bloom_filter_fp_chance = 0.01 
+              AND caching = {'keys': 'ALL', 'rows_per_partition': 'ALL'}
+              AND comment = ''
+              AND compaction = {'class': 'SizeTieredCompactionStrategy'}
+              AND compression = {'sstable_compression': 'org.apache.cassandra.io.compress.LZ4Compressor'}
+              AND crc_check_chance = 1.0
+              AND dclocal_read_repair_chance = 0.0
+              AND default_time_to_live = 0
+              AND gc_grace_seconds = 864000
+              AND max_index_interval = 2048
+              AND memtable_flush_period_in_ms = 0
+              AND min_index_interval = 128
+              AND read_repair_chance = 0.0
+              AND speculative_retry = '99.0PERCENTILE';
+     - create-table-web_returns : | 
+        create table benchmark.web_returns( 
+          wr_order_number bigint,
+          wr_item_sk bigint,
+          wr_web_page_sk bigint,
+          wr_returned_date_sk bigint,
+          wr_returned_time_sk bigint,
+          wr_returning_addr_sk bigint,
+          wr_returning_cdemo_sk bigint,
+          wr_returning_customer_sk bigint,
+          wr_refunded_cdemo_sk bigint,
+          wr_refunded_customer_sk bigint,
+          wr_refunded_hdemo_sk bigint,
+          wr_account_credit double,
+          wr_returning_hdemo_sk bigint,
+          wr_refunded_addr_sk bigint,
+          wr_reason_sk bigint,
+          wr_fee double,
+          wr_net_loss double,
+          wr_refunded_cash double,
+          wr_return_amt double,
+          wr_return_amt_inc_tax double,
+          wr_return_quantity int,
+          wr_return_ship_cost double,
+          wr_return_tax double,
+          wr_reversed_charge double,
+          PRIMARY KEY ((wr_item_sk, wr_order_number,wr_returned_date_sk,wr_returned_time_sk))
+          )  WITH bloom_filter_fp_chance = 0.01
+            AND caching = {'keys': 'ALL', 'rows_per_partition': 'ALL'}
+            AND comment = ''
+            AND compaction = {'class': 'SizeTieredCompactionStrategy'}
+            AND compression = {'sstable_compression': 'org.apache.cassandra.io.compress.LZ4Compressor'}
+            AND crc_check_chance = 1.0
+            AND dclocal_read_repair_chance = 0.0
+            AND default_time_to_live = 0
+            AND gc_grace_seconds = 864000
+            AND max_index_interval = 2048
+            AND memtable_flush_period_in_ms = 0
+            AND min_index_interval = 128
+            AND read_repair_chance = 0.0
+            AND speculative_retry = '99.0PERCENTILE';      
+     - create-table-store_sales : |
+          CREATE TABLE benchmark.store_sales (
+          ss_item_sk bigint,
+          ss_ticket_number bigint,
+          junk text,
+          ss_addr_sk bigint,
+          ss_cdemo_sk bigint,
+          ss_coupon_amt double,
+          ss_customer_sk bigint,
+          ss_ext_discount_amt double,
+          ss_ext_list_price double,
+          ss_ext_sales_price double,
+          ss_ext_tax double,
+          ss_ext_wholesale_cost double,
+          ss_hdemo_sk bigint,
+          ss_list_price double,
+          ss_net_paid double,
+          ss_net_paid_inc_tax double,
+          ss_net_profit double,
+          ss_promo_sk bigint,
+          ss_quantity int,
+          ss_sales_price double,
+          ss_sold_date_sk bigint,
+          ss_sold_time_sk bigint,
+          ss_store_sk bigint,
+          ss_wholesale_cost double,
+          PRIMARY KEY ((ss_item_sk, ss_ticket_number,ss_sold_date_sk,ss_sold_time_sk))
+          ) WITH bloom_filter_fp_chance = 0.01
+          AND caching = {'keys': 'ALL', 'rows_per_partition': 'ALL'}
+          AND comment = ''
+          AND compaction = {'class': 'SizeTieredCompactionStrategy'}
+          AND compression = {'sstable_compression': 'org.apache.cassandra.io.compress.LZ4Compressor'}
+          AND crc_check_chance = 1.0
+          AND dclocal_read_repair_chance = 0.0
+          AND default_time_to_live = 0
+          AND gc_grace_seconds = 864000
+          AND max_index_interval = 2048
+          AND memtable_flush_period_in_ms = 0
+          AND min_index_interval = 128
+          AND read_repair_chance = 0.0
+          AND speculative_retry = '99.0PERCENTILE';            
+     - create-table-store_returns : |
+          CREATE TABLE benchmark.store_returns (
+          sr_item_sk bigint,
+          sr_store_sk bigint,
+          sr_return_time_sk bigint,
+          sr_returned_date_sk bigint,
+          sr_cdemo_sk bigint,
+          sr_customer_sk bigint,
+          sr_addr_sk bigint,
+          sr_hdemo_sk bigint,
+          sr_reason_sk bigint,
+          sr_ticket_number bigint,
+          sr_fee double,
+          sr_net_loss double,
+          sr_refunded_cash double,
+          sr_return_amt double,
+          sr_return_amt_inc_tax double,
+          sr_return_quantity int,
+          sr_return_ship_cost double,
+          sr_return_tax double,
+          sr_reversed_charge double,
+          sr_store_credit double,
+          junk text,
+          PRIMARY KEY ((sr_item_sk, sr_ticket_number,sr_returned_date_sk,sr_return_time_sk))
+          ) WITH bloom_filter_fp_chance = 0.01
+          AND caching = {'keys': 'ALL', 'rows_per_partition': 'ALL'}
+          AND comment = ''
+          AND compaction = {'class': 'SizeTieredCompactionStrategy'}
+          AND compression = {'sstable_compression': 'org.apache.cassandra.io.compress.LZ4Compressor'}
+          AND crc_check_chance = 1.0
+          AND dclocal_read_repair_chance = 0.0
+          AND default_time_to_live = 0
+          AND gc_grace_seconds = 864000
+          AND max_index_interval = 2048
+          AND memtable_flush_period_in_ms = 0
+          AND min_index_interval = 128
+          AND read_repair_chance = 0.0
+          AND speculative_retry = '99.0PERCENTILE';
+     - create-table-catalog_sales : |
+          CREATE TABLE benchmark.catalog_sales (
+            cs_item_sk bigint,
+            cs_order_number bigint,
+            cs_ship_addr_sk bigint,
+            cs_ship_cdemo_sk bigint,
+            cs_ship_customer_sk bigint,
+            cs_ship_date_sk bigint,
+            cs_ship_hdemo_sk bigint,
+            cs_ship_mode_sk bigint,
+            cs_sold_date_sk bigint,
+            cs_sold_time_sk bigint,
+            cs_warehouse_sk bigint,
+            cs_bill_addr_sk bigint,
+            cs_bill_cdemo_sk bigint,
+            cs_bill_customer_sk bigint,
+            cs_bill_hdemo_sk bigint,
+            cs_call_center_sk bigint,
+            cs_catalog_page_sk bigint,
+            cs_promo_sk bigint,
+            cs_quantity int,
+            cs_coupon_amt double,
+            cs_ext_discount_amt double,
+            cs_ext_list_price double,
+            cs_ext_sales_price double,
+            cs_ext_ship_cost double,
+            cs_ext_tax double,
+            cs_ext_wholesale_cost double,
+            cs_list_price double,
+            cs_net_paid double,
+            cs_net_paid_inc_ship double,
+            cs_net_paid_inc_ship_tax double,
+            cs_net_paid_inc_tax double,
+            cs_net_profit double,
+            cs_sales_price double,
+            cs_wholesale_cost double,
+            junk text,
+            PRIMARY KEY ((cs_item_sk, cs_order_number))
+          ) WITH bloom_filter_fp_chance = 0.01
+            AND caching = {'keys': 'ALL', 'rows_per_partition': 'ALL'}
+            AND comment = ''
+            AND compaction = {'class': 'SizeTieredCompactionStrategy'}
+            AND compression = {'sstable_compression': 'org.apache.cassandra.io.compress.LZ4Compressor'}
+            AND crc_check_chance = 1.0
+            AND dclocal_read_repair_chance = 0.0
+            AND default_time_to_live = 0
+            AND gc_grace_seconds = 864000
+            AND max_index_interval = 2048
+            AND memtable_flush_period_in_ms = 0
+            AND min_index_interval = 128
+            AND read_repair_chance = 0.0
+            AND speculative_retry = '99.0PERCENTILE';
+
+  - tags:
+      phase: rampup
+    params:
+      cl: ONE
+      prepared: true
+    statements:
+     - insert-statement-store-returns: |
+        insert into benchmark.store_returns 
+        (sr_item_sk,sr_store_sk,sr_return_time_sk,sr_returned_date_sk,sr_cdemo_sk,sr_customer_sk,sr_addr_sk,sr_hdemo_sk,sr_reason_sk,sr_ticket_number,sr_fee,sr_net_loss,sr_refunded_cash,sr_return_amt,sr_return_amt_inc_tax,sr_return_quantity,sr_return_ship_cost,sr_return_tax,sr_reversed_charge,sr_store_credit)
+        values
+        ({sr_item_sk},{sr_store_sk},{sr_return_time_sk},{sr_returned_date_sk},{sr_cdemo_sk},{sr_customer_sk},{sr_addr_sk},{sr_hdemo_sk},{sr_reason_sk},{sr_ticket_number},{sr_fee},{sr_net_loss},{sr_refunded_cash},{sr_return_amt},{sr_return_amt_inc_tax},{sr_return_quantity},{sr_return_ship_cost},{sr_return_tax},{sr_reversed_charge},{sr_store_credit})
+       ratio: 1
+     - insert-statement-store_sales: |
+        insert into benchmark.store_sales 
+        (ss_item_sk,ss_ticket_number,ss_addr_sk,ss_cdemo_sk,ss_coupon_amt,ss_customer_sk,ss_ext_discount_amt,ss_ext_list_price,ss_ext_sales_price,ss_ext_tax,ss_ext_wholesale_cost,ss_hdemo_sk,ss_list_price,ss_net_paid,ss_net_paid_inc_tax,ss_net_profit,ss_promo_sk,ss_quantity,ss_sales_price,ss_sold_date_sk,ss_sold_time_sk,ss_store_sk,ss_wholesale_cost)
+        values
+        ({ss_item_sk},{ss_ticket_number},{ss_addr_sk},{ss_cdemo_sk},{ss_coupon_amt},{ss_customer_sk},{ss_ext_discount_amt},{ss_ext_list_price},{ss_ext_sales_price},{ss_ext_tax},{ss_ext_wholesale_cost},{ss_hdemo_sk},{ss_list_price},{ss_net_paid},{ss_net_paid_inc_tax},{ss_net_profit},{ss_promo_sk},{ss_quantity},{ss_sales_price},{ss_sold_date_sk},{ss_sold_time_sk},{ss_store_sk},{ss_wholesale_cost})
+       ratio: 15
+     - insert-statement-web-sales: |
+        insert into benchmark.web_sales 
+        (ws_item_sk,ws_order_number,ws_sold_date_sk,ws_sold_time_sk,ws_warehouse_sk,ws_ship_date_sk,ws_bill_customer_sk,ws_bill_cdemo_sk,ws_bill_hdemo_sk,ws_bill_addr_sk,ws_ship_customer_sk,ws_ship_cdemo_sk,ws_ship_hdemo_sk,ws_ship_addr_sk,ws_web_page_sk,ws_promo_sk,ws_web_site_sk,ws_ship_mode_sk,ws_quantity,ws_wholesale_cost,ws_list_price,ws_sales_price,ws_ext_discount_amt,ws_ext_sales_price,ws_ext_wholesale_cost,ws_ext_list_price,ws_ext_tax,ws_coupon_amt,ws_ext_ship_cost,ws_net_paid,ws_net_paid_inc_tax,ws_net_paid_inc_ship,ws_net_paid_inc_ship_tax,ws_net_profit)
+        values
+        ({ws_item_sk},{ws_order_number},{ws_sold_date_sk},{ws_sold_time_sk},{ws_warehouse_sk},{ws_ship_date_sk},{ws_bill_customer_sk},{ws_bill_cdemo_sk},{ws_bill_hdemo_sk},{ws_bill_addr_sk},{ws_ship_customer_sk},{ws_ship_cdemo_sk},{ws_ship_hdemo_sk},{ws_ship_addr_sk},{ws_web_page_sk},{ws_promo_sk},{ws_web_site_sk},{ws_ship_mode_sk},{ws_quantity},{ws_wholesale_cost},{ws_list_price},{ws_sales_price},{ws_ext_discount_amt},{ws_ext_sales_price},{ws_ext_wholesale_cost},{ws_ext_list_price},{ws_ext_tax},{ws_coupon_amt},{ws_ext_ship_cost},{ws_net_paid},{ws_net_paid_inc_tax},{ws_net_paid_inc_ship},{ws_net_paid_inc_ship_tax},{ws_net_profit})
+       ratio: 5
+     - insert-statement-web-returns: |
+        insert into benchmark.web_returns
+        (wr_order_number,wr_item_sk,wr_web_page_sk,wr_returned_date_sk,wr_returned_time_sk,wr_returning_addr_sk,wr_returning_cdemo_sk,wr_returning_customer_sk,wr_refunded_cdemo_sk,wr_refunded_customer_sk,wr_refunded_hdemo_sk,wr_account_credit,wr_returning_hdemo_sk,wr_refunded_addr_sk,wr_reason_sk,wr_fee,wr_net_loss,wr_refunded_cash,wr_return_amt,wr_return_amt_inc_tax,wr_return_quantity,wr_return_ship_cost,wr_return_tax,wr_reversed_charge)
+        values
+        ({wr_order_number},{wr_item_sk},{wr_web_page_sk},{wr_returned_date_sk},{wr_returned_time_sk},{wr_returning_addr_sk},{wr_returning_cdemo_sk},{wr_returning_customer_sk},{wr_refunded_cdemo_sk},{wr_refunded_customer_sk},{wr_refunded_hdemo_sk},{wr_account_credit},{wr_returning_hdemo_sk},{wr_refunded_addr_sk},{wr_reason_sk},{wr_fee},{wr_net_loss},{wr_refunded_cash},{wr_return_amt},{wr_return_amt_inc_tax},{wr_return_quantity},{wr_return_ship_cost},{wr_return_tax},{wr_reversed_charge})
+       ratio: 1
+     - insert-statement-catalog_sales: |
+        insert into benchmark.catalog_sales
+        (cs_item_sk,cs_order_number,cs_ship_addr_sk,cs_ship_cdemo_sk,cs_ship_customer_sk,cs_ship_date_sk,cs_ship_hdemo_sk,cs_ship_mode_sk,cs_sold_date_sk,cs_sold_time_sk,cs_warehouse_sk,cs_bill_addr_sk,cs_bill_cdemo_sk,cs_bill_customer_sk,cs_bill_hdemo_sk,cs_call_center_sk,cs_catalog_page_sk,cs_promo_sk,cs_quantity,cs_coupon_amt,cs_ext_discount_amt,cs_ext_list_price,cs_ext_sales_price,cs_ext_ship_cost,cs_ext_tax,cs_ext_wholesale_cost,cs_list_price,cs_net_paid,cs_net_paid_inc_ship,cs_net_paid_inc_ship_tax,cs_net_paid_inc_tax,cs_net_profit,cs_wholesale_cost,cs_sales_price)
+        values
+        ({cs_item_sk},{cs_order_number},{cs_ship_addr_sk},{cs_ship_cdemo_sk},{cs_ship_customer_sk},{cs_ship_date_sk},{cs_ship_hdemo_sk},{cs_ship_mode_sk},{cs_sold_date_sk},{cs_sold_time_sk},{cs_warehouse_sk},{cs_bill_addr_sk},{cs_bill_cdemo_sk},{cs_bill_customer_sk},{cs_bill_hdemo_sk},{cs_call_center_sk},{cs_catalog_page_sk},{cs_promo_sk},{cs_quantity},{cs_coupon_amt},{cs_ext_discount_amt},{cs_ext_list_price},{cs_ext_sales_price},{cs_ext_ship_cost},{cs_ext_tax},{cs_ext_wholesale_cost},{cs_list_price},{cs_net_paid},{cs_net_paid_inc_ship},{cs_net_paid_inc_ship_tax},{cs_net_paid_inc_tax},{cs_net_profit},{cs_wholesale_cost},{cs_sales_price})
+       ratio: 10                                      

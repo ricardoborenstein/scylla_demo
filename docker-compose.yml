@@ -1,0 +1,48 @@
+version: '2'
+
+services:
+  scylla-spark:
+    ports:
+      - "9042:9042"
+      - "24:22"
+      - "7004:7000"
+      - "7005:7001"
+      - "9181:9180"
+      - "9162:9160"
+      - "7199:7199"
+    image: scylladb/scylla:latest
+    networks:
+      scylla_cluster_scylla_net:
+        ipv4_address: 172.19.0.2
+    container_name: scylladb-01
+    hostname: scylladb-01
+    command: "--seeds 172.19.0.2 --smp 4 --memory 5G --developer-mode 0 --api-address 127.0.0.1 --io-setup 1"
+    cap_add:
+      - SYS_NICE
+
+  # jupyterlab with pyspark
+  pyspark-jupyter:
+    image: jupyter/pyspark-notebook:latest
+    container_name: pyspark-jupyter
+    environment:  
+      JUPYTER_ENABLE_LAB: "yes"
+    ports:
+      - "8888:8888"
+      - "4040:4040"
+      - "4041:4041"
+    volumes:
+      - ./:/home/jovyan/work      
+    networks:  
+      scylla_cluster_scylla_net:
+        ipv4_address: 172.19.0.4
+    cap_add:
+      - SYS_NICE
+
+networks:
+  scylla_cluster_scylla_net:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+      - subnet: 172.19.0.0/16
+        gateway: 172.19.0.1      
