@@ -24,6 +24,11 @@ verify using `docker ps`
 ## CQLSH
 `docker exec -it scylladb-01 cqlsh`
 
+## Install NoSQlBench
+```
+wget https://github.com/nosqlbench/nosqlbench/releases/download/nosqlbench-4.15.63/nb
+chmod +x nb
+```
 
 ## Install SBT
 Make sure you have latest sbt:
@@ -49,31 +54,31 @@ Verify you have the jar built:
 ```
 ls -la target/scala-2.12/spark3-scylla4-example-assembly-0.1.jar
 ```
-## Generate CSV
-This will generate the CSV that will be loaded by the jupyter-notebook
-
-Please clone the TPC-DS Kit repository: 
-```
-git clone https://github.com/gregrahn/tpcds-kit`
-```
-
-Follow the guide to build the project:
-```
-https://github.com/gregrahn/tpcds-kit#setup
-```
-
-To generate 1GB of CSV data:
-```
-dsdgen -sc 1
-```
-> -sc = scale in GB
+## Generate dimension tables
+Access:
+http://localhost:8888/lab/tree/work/Generate_Dimension_Tables_Parquet.ipynb
 
 ## Accessing the Demo
 Access: 
-http://ricardo-server:8888/notebooks/work/TPC-DS-Benchmark.ipynb#
+http://localhost:8888/lab/tree/work/Retail%20Demo%20-%20ScyllaDB.ipynb
 
-Starting Real-Time Workload:
+## Starting Real-Time Workload:
+Access:
+http://localhost:8888//lab/tree/work/NoSQLBench_Real-time_Workload.ipynb
+
+
+## Connect Scylla Monitoring into the the demo network
+
+Download the latest release from:
+https://github.com/scylladb/scylla-monitoring/releases/tag/scylla-monitoring-3.9.1
+
+Add ```scylladb-01``` IP at ```prometheus/scylla_servers.yml```
+
+Add ```scylla-manager``` IP at ```prometheus/scylla_manager_servers.yml```
+
+
+Adding into the demo network:
 ```
-python3 generate.py
-```
+for i in {aprom,agraf,aalert,agrafrender,loki,promtail}; do docker network connect scylla_demo_scylla_cluster_scylla_net ${i}; done 
+'''
 
