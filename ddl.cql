@@ -1,7 +1,4 @@
-drop keyspace if exists tpcds;
-CREATE KEYSPACE IF NOT EXISTS tpcds WITH replication = {'class': 'NetworkTopologyStrategy', 'datacenter1' : '1'};
 use tpcds;
-
 drop table if exists call_center;
 
 create table call_center(
