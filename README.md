@@ -54,6 +54,8 @@ Verify you have the jar built:
 ```
 ls -la target/scala-2.12/spark3-scylla4-example-assembly-0.1.jar
 ```
+## Start environment
+``` sh start-containers.sh ```
 ## Generate dimension tables
 Access:
 http://localhost:8888/lab/tree/work/Generate_Dimension_Tables_Parquet.ipynb
