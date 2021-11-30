@@ -1,7 +1,44 @@
 version: '2'
 
 services:
-  scylla-spark:
+  scylla-manager:
+    image: scylladb/scylla-manager
+    container_name: scylla-manager
+    hostname: scylla-manager
+    networks:
+      scylla_cluster_scylla_net:
+        ipv4_address: 172.19.0.4
+    depends_on:
+      - scylla-manager-db
+    ports:
+      - 56090:56090
+
+  scylla-manager-db:
+    image: scylladb/scylla:latest
+    container_name: scylla-manager-db
+    hostname: scylla-manager-db
+    networks:
+      scylla_cluster_scylla_net:
+        ipv4_address: 172.19.0.5
+    volumes:
+      - ./scylla_manager_db_data/:/var/lib/scylla
+    command: --smp 1 --memory 100M
+
+  minio:
+    image: minio/minio
+    volumes:
+      - ./minio/:/data
+    networks:
+          scylla_cluster_scylla_net:
+            ipv4_address: 172.19.0.6
+    ports:
+      - "9001:9000"
+    environment:
+      MINIO_ACCESS_KEY: minio
+      MINIO_SECRET_KEY: minio123
+    command: server /data
+
+  scylladb:
     ports:
       - "9042:9042"
       - "24:22"
@@ -10,7 +47,9 @@ services:
       - "9181:9180"
       - "9162:9160"
       - "7199:7199"
-    image: scylladb/scylla:latest
+    build: 
+      dockerfile: Dockerfile-scylla-with-agent
+      context: .
     networks:
       scylla_cluster_scylla_net:
         ipv4_address: 172.19.0.2
@@ -22,21 +61,25 @@ services:
 
   # jupyterlab with pyspark
   pyspark-jupyter:
-    image: jupyter/pyspark-notebook:latest
+    build: 
+        dockerfile: Dockerfile-jupyter
+        context: .
     container_name: pyspark-jupyter
     environment:  
       JUPYTER_ENABLE_LAB: "yes"
     ports:
       - "8888:8888"
-      - "4040:4040"
-      - "4041:4041"
     volumes:
-      - ./:/home/jovyan/work      
+      - ./:/home/jovyan/work/    
     networks:  
       scylla_cluster_scylla_net:
-        ipv4_address: 172.19.0.4
+        ipv4_address: 172.19.0.3
     cap_add:
-      - SYS_NICE
+      - SYS_ADMIN
+    privileged: true
+  
+ 
+
 
 networks:
   scylla_cluster_scylla_net:
@@ -45,4 +88,4 @@ networks:
       driver: default
       config:
       - subnet: 172.19.0.0/16
-        gateway: 172.19.0.1      
+        gateway: 172.19.0.1  

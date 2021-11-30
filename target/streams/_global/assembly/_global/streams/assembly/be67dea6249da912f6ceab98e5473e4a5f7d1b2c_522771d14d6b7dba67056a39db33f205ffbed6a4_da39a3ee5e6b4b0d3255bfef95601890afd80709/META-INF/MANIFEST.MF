@@ -1,0 +1,66 @@
+Manifest-Version: 1.0
+Archiver-Version: Plexus Archiver
+Created-By: Apache Maven Bundle Plugin
+Bnd-LastModified: 1591347388528
+Build-Jdk: 1.8.0_192
+Built-By: alexandredutra
+Bundle-Description: Shaded Guava artifact for use in the DataStax Java
+  driver for Apache Cassandra®
+Bundle-License: http://www.apache.org/licenses/LICENSE-2.0.txt
+Bundle-ManifestVersion: 2
+Bundle-Name: Shaded Guava artifact for use in the DataStax Java driver
+  for Apache Cassandra®
+Bundle-SymbolicName: com.datastax.oss.driver.shaded.guava
+Bundle-Version: 25.1.0.jre-graal-sub-1
+Export-Package: com.datastax.oss.driver.shaded.guava.common.annotation
+ s;version="25.1.0",com.datastax.oss.driver.shaded.guava.common.base;v
+ ersion="25.1.0",com.datastax.oss.driver.shaded.guava.common.base.inte
+ rnal;version="25.1.0",com.datastax.oss.driver.shaded.guava.common.cac
+ he;uses:="com.datastax.oss.driver.shaded.guava.common.base,com.datast
+ ax.oss.driver.shaded.guava.common.collect,com.datastax.oss.driver.sha
+ ded.guava.common.util.concurrent";version="25.1.0",com.datastax.oss.d
+ river.shaded.guava.common.collect;uses:="com.datastax.oss.driver.shad
+ ed.guava.common.base";version="25.1.0",com.datastax.oss.driver.shaded
+ .guava.common.escape;uses:="com.datastax.oss.driver.shaded.guava.comm
+ on.base";version="25.1.0",com.datastax.oss.driver.shaded.guava.common
+ .eventbus;version="25.1.0",com.datastax.oss.driver.shaded.guava.commo
+ n.graph;uses:="com.datastax.oss.driver.shaded.guava.common.collect";v
+ ersion="25.1.0",com.datastax.oss.driver.shaded.guava.common.hash;uses
+ :="com.datastax.oss.driver.shaded.guava.common.base";version="25.1.0"
+ ,com.datastax.oss.driver.shaded.guava.common.html;uses:="com.datastax
+ .oss.driver.shaded.guava.common.escape";version="25.1.0",com.datastax
+ .oss.driver.shaded.guava.common.io;uses:="com.datastax.oss.driver.sha
+ ded.guava.common.base,com.datastax.oss.driver.shaded.guava.common.col
+ lect,com.datastax.oss.driver.shaded.guava.common.graph,com.datastax.o
+ ss.driver.shaded.guava.common.hash";version="25.1.0",com.datastax.oss
+ .driver.shaded.guava.common.math;version="25.1.0",com.datastax.oss.dr
+ iver.shaded.guava.common.net;uses:="com.datastax.oss.driver.shaded.gu
+ ava.common.base,com.datastax.oss.driver.shaded.guava.common.collect,c
+ om.datastax.oss.driver.shaded.guava.common.escape";version="25.1.0",c
+ om.datastax.oss.driver.shaded.guava.common.primitives;uses:="com.data
+ stax.oss.driver.shaded.guava.common.base";version="25.1.0",com.datast
+ ax.oss.driver.shaded.guava.common.reflect;uses:="com.datastax.oss.dri
+ ver.shaded.guava.common.collect,com.datastax.oss.driver.shaded.guava.
+ common.io";version="25.1.0",com.datastax.oss.driver.shaded.guava.comm
+ on.util.concurrent;uses:="com.datastax.oss.driver.shaded.guava.common
+ .base,com.datastax.oss.driver.shaded.guava.common.collect";version="2
+ 5.1.0",com.datastax.oss.driver.shaded.guava.common.xml;uses:="com.dat
+ astax.oss.driver.shaded.guava.common.escape";version="25.1.0",com.dat
+ astax.oss.driver.shaded.guava.thirdparty.publicsuffix;uses:="com.data
+ stax.oss.driver.shaded.guava.common.collect";version="25.1.0"
+Import-Package: javax.annotation;resolution:=optional;version="[3.0,4)
+ ",javax.crypto;resolution:=optional,javax.crypto.spec;resolution:=opt
+ ional,sun.misc;resolution:=optional,com.datastax.oss.driver.shaded.gu
+ ava.common.base,com.datastax.oss.driver.shaded.guava.common.cache,com
+ .datastax.oss.driver.shaded.guava.common.collect,com.datastax.oss.dri
+ ver.shaded.guava.common.escape,com.datastax.oss.driver.shaded.guava.c
+ ommon.graph,com.datastax.oss.driver.shaded.guava.common.hash,com.data
+ stax.oss.driver.shaded.guava.common.io,com.datastax.oss.driver.shaded
+ .guava.common.math,com.datastax.oss.driver.shaded.guava.common.primit
+ ives,com.datastax.oss.driver.shaded.guava.common.reflect,com.datastax
+ .oss.driver.shaded.guava.common.util.concurrent,com.datastax.oss.driv
+ er.shaded.guava.thirdparty.publicsuffix
+Originally-Created-By: Apache Maven 3.6.2
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.8))"
+Tool: Bnd-3.5.0.201709291849
+

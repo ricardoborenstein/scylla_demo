@@ -4,4 +4,4 @@ RUN pip3 install scylla-driver
 USER root
 RUN wget http://archive.ubuntu.com/ubuntu/pool/main/f/fuse/fuse_2.9.7-1ubuntu1_amd64.deb
 RUN apt update 
-RUN apt install -y fuse gcc make flex bison byacc git
+RUN apt install -y fuse gcc make flex bison byacc git curl

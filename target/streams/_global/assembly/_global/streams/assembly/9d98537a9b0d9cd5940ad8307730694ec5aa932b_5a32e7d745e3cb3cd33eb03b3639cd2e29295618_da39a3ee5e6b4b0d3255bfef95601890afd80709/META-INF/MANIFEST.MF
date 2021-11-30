@@ -1,0 +1,85 @@
+Manifest-Version: 1.0
+Automatic-Module-Name: com.datastax.oss.driver.mapper.runtime
+Bnd-LastModified: 1623678327110
+Build-Jdk: 1.8.0_282
+Built-By: alexandredutra
+Bundle-Description: A driver for Apache Cassandra(R) 2.1+ that works e
+ xclusively with the Cassandra Query Language version 3 (CQL3) and Cas
+ sandra's native protocol versions 3 and above.
+Bundle-License: http://www.apache.org/licenses/LICENSE-2.0.txt
+Bundle-ManifestVersion: 2
+Bundle-Name: DataStax Java driver for Apache Cassandra(R) - object map
+ per runtime
+Bundle-SymbolicName: com.datastax.oss.driver.mapper-runtime
+Bundle-Version: 4.12.0
+Created-By: Apache Maven Bundle Plugin
+DynamicImport-Package: *
+Export-Package: com.datastax.dse.driver.api.mapper.reactive;version="4
+ .12.0";uses:="com.datastax.dse.driver.api.core.cql.reactive,org.react
+ ivestreams",com.datastax.dse.driver.internal.mapper;version="4.12.0",
+ com.datastax.dse.driver.internal.mapper.reactive;uses:="com.datastax.
+ dse.driver.api.core.cql.reactive,com.datastax.dse.driver.api.mapper.r
+ eactive,com.datastax.dse.driver.internal.core.cql.reactive,com.datast
+ ax.oss.driver.api.core.cql,com.datastax.oss.driver.api.mapper,com.dat
+ astax.oss.driver.api.mapper.entity,com.datastax.oss.driver.internal.m
+ apper,org.reactivestreams";version="4.12.0",com.datastax.oss.driver.a
+ pi.mapper;version="4.12.0";uses:="com.datastax.oss.driver.api.core,co
+ m.datastax.oss.driver.api.core.config,com.datastax.oss.driver.api.cor
+ e.type.reflect,com.datastax.oss.driver.api.mapper.entity.naming,com.d
+ atastax.oss.driver.api.mapper.result",com.datastax.oss.driver.api.map
+ per.annotations;version="4.12.0";uses:="com.datastax.oss.driver.api.m
+ apper.entity.naming,com.datastax.oss.driver.api.mapper.entity.saving"
+ ,com.datastax.oss.driver.api.mapper.entity;version="4.12.0";uses:="co
+ m.datastax.oss.driver.api.core,com.datastax.oss.driver.api.core.data,
+ com.datastax.oss.driver.api.mapper.entity.saving,com.datastax.oss.dri
+ ver.api.querybuilder.delete,com.datastax.oss.driver.api.querybuilder.
+ insert,com.datastax.oss.driver.api.querybuilder.select,com.datastax.o
+ ss.driver.api.querybuilder.update",com.datastax.oss.driver.api.mapper
+ .entity.naming;version="4.12.0",com.datastax.oss.driver.api.mapper.en
+ tity.saving;version="4.12.0",com.datastax.oss.driver.api.mapper.resul
+ t;version="4.12.0";uses:="com.datastax.oss.driver.api.core.cql,com.da
+ tastax.oss.driver.api.core.type.reflect,com.datastax.oss.driver.api.m
+ apper,com.datastax.oss.driver.api.mapper.entity",com.datastax.oss.dri
+ ver.internal.mapper;uses:="com.datastax.oss.driver.api.core,com.datas
+ tax.oss.driver.api.core.config,com.datastax.oss.driver.api.core.cql,c
+ om.datastax.oss.driver.api.core.type.reflect,com.datastax.oss.driver.
+ api.mapper,com.datastax.oss.driver.api.mapper.entity,com.datastax.oss
+ .driver.api.mapper.entity.naming,com.datastax.oss.driver.api.mapper.r
+ esult";version="4.12.0",com.datastax.oss.driver.internal.mapper.entit
+ y;uses:="com.datastax.oss.driver.api.core,com.datastax.oss.driver.api
+ .core.data,com.datastax.oss.driver.api.core.metadata.schema,com.datas
+ tax.oss.driver.api.core.type,com.datastax.oss.driver.api.core.type.co
+ dec.registry,com.datastax.oss.driver.api.core.type.reflect,com.datast
+ ax.oss.driver.api.mapper,com.datastax.oss.driver.api.mapper.entity,co
+ m.datastax.oss.driver.api.mapper.entity.saving";version="4.12.0"
+Import-Package: org.reactivestreams;resolution:=optional;version="[1.0
+ ,2)",com.datastax.dse.driver.api.core.cql.reactive;version="[4.12,5)"
+ ,com.datastax.dse.driver.api.mapper.reactive;version="[4.12,5)",com.d
+ atastax.dse.driver.internal.core.cql.reactive;version="[4.12,5)",com.
+ datastax.oss.driver.api.core;version="[4.12,5)",com.datastax.oss.driv
+ er.api.core.config;version="[4.12,5)",com.datastax.oss.driver.api.cor
+ e.context;version="[4.12,5)",com.datastax.oss.driver.api.core.cql;ver
+ sion="[4.12,5)",com.datastax.oss.driver.api.core.data;version="[4.12,
+ 5)",com.datastax.oss.driver.api.core.metadata.schema;version="[4.12,5
+ )",com.datastax.oss.driver.api.core.type;version="[4.12,5)",com.datas
+ tax.oss.driver.api.core.type.codec;version="[4.12,5)",com.datastax.os
+ s.driver.api.core.type.codec.registry;version="[4.12,5)",com.datastax
+ .oss.driver.api.core.type.reflect;version="[4.12,5)",com.datastax.oss
+ .driver.api.mapper;version="[4.12,5)",com.datastax.oss.driver.api.map
+ per.annotations;version="[4.12,5)",com.datastax.oss.driver.api.mapper
+ .entity;version="[4.12,5)",com.datastax.oss.driver.api.mapper.entity.
+ naming;version="[4.12,5)",com.datastax.oss.driver.api.mapper.entity.s
+ aving;version="[4.12,5)",com.datastax.oss.driver.api.mapper.result;ve
+ rsion="[4.12,5)",com.datastax.oss.driver.api.querybuilder.delete;vers
+ ion="[4.12,5)",com.datastax.oss.driver.api.querybuilder.insert;versio
+ n="[4.12,5)",com.datastax.oss.driver.api.querybuilder.select;version=
+ "[4.12,5)",com.datastax.oss.driver.api.querybuilder.update;version="[
+ 4.12,5)",com.datastax.oss.driver.internal.core;version="[4.12,5)",com
+ .datastax.oss.driver.internal.core.context;version="[4.12,5)",com.dat
+ astax.oss.driver.internal.core.util;version="[4.12,5)",com.datastax.o
+ ss.driver.internal.mapper,com.datastax.oss.driver.shaded.guava.common
+ .collect;version="[25.1,26)",com.datastax.oss.protocol.internal.util.
+ collection;version="[1.5,2)",org.slf4j;version="[1.7,2)"
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.8))"
+Tool: Bnd-4.2.0.201903051501
+

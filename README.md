@@ -9,6 +9,17 @@ Make sure you have docker and docker-compose installed.
 https://docs.docker.com/engine/install/
 https://docs.docker.com/compose/install/
 
+start a scylla container:
+```
+./start-scylla-container.sh
+```
+
+Now you should have scylla 4.4.3 listening on port 9042 and Jupyter Notebook with PySpark on port 8888
+
+Check the output of `docker logs pyspark-jupyter` to get the token
+
+verify using `docker ps`
+
 
 ## CQLSH
 `docker exec -it scylladb-01 cqlsh`
@@ -44,18 +55,7 @@ Verify you have the jar built:
 ls -la target/scala-2.12/spark3-scylla4-example-assembly-0.1.jar
 ```
 ## Start environment
-
-start Scylla and Jupyter containers:
-```
-./start-containers.sh
-```
-
-Now you should have scylla 4.4.3 listening on port 9042 and Jupyter Notebook with PySpark on port 8888
-
-Check the output of `docker logs pyspark-jupyter` to get the token
-
-verify using `docker ps`
-
+``` sh start-containers.sh ```
 ## Generate dimension tables
 Access:
 http://localhost:8888/lab/tree/work/Generate_Dimension_Tables_Parquet.ipynb
