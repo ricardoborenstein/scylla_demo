@@ -11,7 +11,7 @@ services:
     depends_on:
       - scylla-manager-db
     ports:
-      - 56090:56090
+      - 5090:5090
 
   scylla-manager-db:
     image: scylladb/scylla:latest
