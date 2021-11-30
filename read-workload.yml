@@ -146,12 +146,12 @@ blocks:
     statements:
      - read-statement-store-returns: |
          select * from tpcds.store_returns where sr_item_sk = {sr_item_sk} and sr_ticket_number ={sr_ticket_number};
-     - insert-statement-store_sales: |
+     - read-statement-store_sales: |
          select * from tpcds.store_sales where ss_item_sk = {ss_item_sk} and ss_ticket_number = {ss_ticket_number};
-     - insert-statement-web-sales: |
+     - read-statement-web-sales: |
          select * from tpcds.web_sales where ws_item_sk =  {ws_item_sk} and ws_order_number = {ws_order_number};
-     - insert-statement-web-returns: |
+     - read-statement-web-returns: |
          select * from tpcds.web_returns where wr_order_number={wr_order_number} and wr_item_sk={wr_item_sk};
-     - insert-statement-catalog_sales: |
+     - read-statement-catalog_sales: |
          select * from tpcds.catalog_sales where cs_item_sk = {cs_item_sk} and cs_order_number = {cs_order_number};
 
